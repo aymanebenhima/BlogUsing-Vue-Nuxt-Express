@@ -1,0 +1,22 @@
+{
+  "name": "vue-blog",
+  "version": "1.0.0",
+  "description": "\"Creating fullstack blog using nuxt.js and express.js\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "blog",
+    "crud",
+    "backend"
+  ],
+  "author": "Aymane Benhima",
+  "license": "MIT",
+  "dependencies": {
+    "ejs": "^3.1.2",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.14",
+    "nodemon": "^2.0.4"
+  }
+}
