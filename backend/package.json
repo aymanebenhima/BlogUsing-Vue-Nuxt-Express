@@ -1,0 +1,23 @@
+{
+  "name": "blog-rest-api",
+  "version": "1.0.0",
+  "description": "Creating rest api blog",
+  "main": "server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon --watch src src/server.js"
+  },
+  "keywords": [
+    "blog",
+    "rest-api",
+    "express"
+  ],
+  "author": "Aymane Benhima",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
