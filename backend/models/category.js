@@ -1,8 +1,7 @@
 const Sequelize = require('sequelize');
 const connection = require('./../config/database');
-const category = require('./category');
 
-const post = connection.define('post', {
+const category = connection.define('category', {
     id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
@@ -12,27 +11,14 @@ const post = connection.define('post', {
         type: Sequelize.STRING,
         allowNull: false
     },
-
-    urlImage: {
+    icon: {
         type: Sequelize.STRING,
         allowNull: true
     },
-    description: {
-        type: Sequelize.TEXT,
+    active: {
+        type: Sequelize.BOOLEAN,
         allowNull: true
-    },
-    categoryId: {
-
-        type: Sequelize.INTEGER,
-        allowNull: true
-
-    },
-    userId: {
-
-        type: Sequelize.INTEGER,
-        allowNull: true
-
     }
 });
 
-module.exports = post
+module.exports = category

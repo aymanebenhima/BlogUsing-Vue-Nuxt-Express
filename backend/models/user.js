@@ -1,16 +1,29 @@
-'use strict';
-module.exports = (sequelize, DataTypes) => {
-  const User = sequelize.define('User', {
-    email: DataTypes.STRING,
-    username: DataTypes.STRING,
-    password: DataTypes.STRING,
-    aboutme: DataTypes.STRING,
-    isAdmin: DataTypes.BOOLEAN
-  }, {});
-  User.associate = function(models) {
-    // associations can be defined here
-    models.User.hasMany(models.Post);
-    models.User.hasMany(models.Comment);
-  };
-  return User;
-};
+const Sequelize = require('sequelize');
+const connection = require('./../config/database');
+
+const user = connection.define('user', {
+    id: {
+        type: Sequelize.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    name: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    email: {
+        type: Sequelize.TEXT,
+        allowNull: true
+    },
+    password: {
+        type: Sequelize.STRING,
+        allowNull: true
+    },
+    typeId: {
+        type: Sequelize.INTEGER,
+        allowNull: true
+    }
+
+});
+
+module.exports = user

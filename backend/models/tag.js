@@ -1,16 +1,16 @@
 const Sequelize = require('sequelize');
 const connection = require('./../config/database');
 
-const comment = connection.define('comment', {
+const tag = connection.define('tag', {
     id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
-    commentaire: {
-        type: Sequelize.TEXT,
-        allowNull: true
+    name: {
+        type: Sequelize.STRING,
+        allowNull: false
     }
 });
 
-module.exports = comment
+module.exports = tag
