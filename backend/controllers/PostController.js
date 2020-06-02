@@ -7,8 +7,8 @@ const {
     validationResult
 } = require('express-validator');
 
-// var multer = require('multer');
-// var upload = multer({
+// const multer = require('multer');
+// const upload = multer({
 //     dest: 'uploads/'
 // });
 
