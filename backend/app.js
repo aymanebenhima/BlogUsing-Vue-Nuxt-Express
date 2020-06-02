@@ -50,7 +50,7 @@ app.use('/users', users)
 app.use('/posts', posts)
 app.use('/types', types)
 
-
+// Associations
 User.belongsTo(Type)
 Type.hasMany(User)
 
