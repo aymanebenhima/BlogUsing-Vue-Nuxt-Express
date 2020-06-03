@@ -3,20 +3,10 @@ const Category = require('./../models/category');
 const User = require('./../models/user');
 const Tag = require('./../models/tag');
 const Comment = require('./../models/comment');
-const {
-    validationResult
-} = require('express-validator');
-
-// const multer = require('multer');
-// const upload = multer({
-//     dest: 'uploads/'
-// });
-
+const { validationResult } = require('express-validator');
 
 
 exports.getAllPost = (req, res) => {
-
-
 
     Post.findAll({
             include: [{

@@ -1,17 +1,8 @@
 const express = require('express');
 const PostController = require('./../controllers/PostController');
 const isAuth = require('./../middleware/isAuth');
-var multer = require('multer');
-
-
-
-const {
-    body
-} = require('express-validator');
-
-
-
-
+const { body } = require('express-validator');
+const multer = require('multer');
 const router = express.Router();
 
 router.get('', PostController.getAllPost);
@@ -30,22 +21,33 @@ chekData = [
 
 ]
 
-var storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, 'uploads/posts')
+// init uploads
+const storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+      cb(null, './uploads/');
     },
-    filename: function (req, file, cb) {
-        cb(null, Date.now() + file.originalname) //Appending .jpg
+    filename: function(req, file, cb) {
+      cb(null, new Date().toISOString() + file.originalname);
     }
-})
-
-var upload = multer({
-    dest: 'uploads/posts',
-    storage: storage
 });
 
+const fileFilter = (req, file, cb) => {
+    // reject a file
+    if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png')
+        cb(null, true);
+    else
+        cb(null, false);
+};
+  
+const upload = multer({
+    storage: storage,
+    limits: {
+        fileSize: 1024 * 1024 * 5
+    },
+    fileFilter: fileFilter
+});
 
-
+//Define routes
 router.post('',isAuth, upload.single('urlImage'), chekData, PostController.storePost);
 router.put('/:id',isAuth, chekData, PostController.updatePost);
 router.get('/:id', PostController.showOnePost);
