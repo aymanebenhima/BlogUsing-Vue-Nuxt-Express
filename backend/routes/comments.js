@@ -1,5 +1,6 @@
 const express = require('express');
 const CommentController = require('./../controllers/CommentController');
+const isAuth = require('./../middleware/isAuth');
 
 const {
     body
@@ -14,10 +15,10 @@ checkData = [
         min: 5,
     }).withMessage("comment not found !!! ")
 ]
-router.post('', checkData, CommentController.storeComment);
-router.put('/:id', checkData, CommentController.updateComment);
+router.post('', isAuth, checkData, CommentController.storeComment);
+router.put('/:id', isAuth, checkData, CommentController.updateComment);
 router.get('/:id', CommentController.showOneComment)
-router.delete('/:id', CommentController.deleteComment)
-router.patch('/:id', checkData, CommentController.patchComment)
+router.delete('/:id', isAuth, CommentController.deleteComment)
+router.patch('/:id', isAuth, checkData, CommentController.patchComment)
 
 module.exports = router;

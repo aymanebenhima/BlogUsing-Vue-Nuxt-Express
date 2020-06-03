@@ -1,12 +1,14 @@
 const express = require('express');
 const UserController = require('./../controllers/UserController');
+const isAuth = require('./../middleware/isAuth');
+
 const {
     body
 } = require('express-validator');
 
 const router = express.Router();
 
-router.get('', UserController.getAllUsers);
+router.get('', isAuth, UserController.getAllUsers);
 
 checkData = [
     // username must be an email
@@ -21,9 +23,9 @@ checkData = [
     })
 ]
 
-router.post('', checkData, UserController.storeUser);
-router.put('/:id', checkData, UserController.updateUser);
-router.get('/:id', UserController.showOneUser)
-router.patch('/:id', checkData, UserController.patchUser)
+router.post('', isAuth, checkData, UserController.storeUser);
+router.put('/:id', isAuth, checkData, UserController.updateUser);
+router.get('/:id', isAuth, UserController.showOneUser)
+router.patch('/:id', isAuth, checkData, UserController.patchUser)
 
 module.exports = router;

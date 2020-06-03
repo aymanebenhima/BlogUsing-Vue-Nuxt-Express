@@ -13,6 +13,7 @@ const categories = require('./routes/categories');
 const comments = require('./routes/comments');
 const posts = require('./routes/posts');
 const types = require('./routes/types');
+const auth = require('./routes/auth');
 
 
 app.use(cors());
@@ -43,12 +44,14 @@ app.get('/', (req, res) =>{
     res.setHeader('Content-Type', 'text/html');
     res.status(200).send('<h1>hello my test</h1>');
 });
+
 //Usage of routes
 app.use('/categories', categories)
 app.use('/comments', comments)
 app.use('/users', users)
 app.use('/posts', posts)
 app.use('/types', types)
+app.use(auth)
 
 // Associations
 User.belongsTo(Type)
