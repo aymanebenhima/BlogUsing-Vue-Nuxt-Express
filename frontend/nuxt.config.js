@@ -5,7 +5,7 @@ export default {
   ** Headers of the page
   */
   head: {
-    title: process.env.npm_package_name || '',
+    title: 'Welcome to Blog for developers',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -20,6 +20,10 @@ export default {
   ** Customize the progress-bar color
   */
   loading: { color: '#d63031', height: '5px', duration: 5000 },
+  loadingIndicator: {
+    name: 'circle',
+    color: '#d63031'
+  },
   /*
   ** Global CSS
   */
@@ -50,7 +54,8 @@ export default {
    * * Axios.js configuration
    */
   axios: {
-
+    baseURL: process.env.BASE_URL || 'http://localhost:5000',
+    credentials: false
   },
   /*
   ** Build configuration

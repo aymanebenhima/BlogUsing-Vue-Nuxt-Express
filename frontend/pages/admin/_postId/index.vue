@@ -7,13 +7,12 @@
 </template>
 
 <script>
-import axios from 'axios';
-
 export default {
   layout: 'admin',
+    middleware: ['is-auth', 'auth'],
   asyncData(context) {
     return axios
-      .get(process.env.baseUrl + '/posts/' + context.params.postId + '.json')
+      .get(process.env.baseUrl + '/posts/' + context.params.postId)
       .then( res => {
         return {
           loadedPost: { ...res.data, id: context.params.postId }

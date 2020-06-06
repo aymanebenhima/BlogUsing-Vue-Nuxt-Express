@@ -3,10 +3,10 @@
     <section class="post">
       <h1 class="post-title">{{ loadedPost.title }}</h1>
       <div class="post-details">
-        <div class="post-detail">Last updated on {{ loadedPost.updatedDate | date }}</div>
-        <div class="post-detail">Written by {{ loadedPost.author }}</div>
+        <div class="post-detail">Last updated on {{ loadedPost.updatedAt | date }}</div>
+        <div class="post-detail">Written by {{ loadedPost.user }}</div>
       </div>
-      <p class="post-content">{{ loadedPost.content }}</p>
+      <p class="post-content">{{ loadedPost.description }}</p>
     </section>
     <section class="post-feedback">
       <p>Let me know what you thing about post, send mail to <a href="mailto:aymanebenhima@gmail.com">aymanebenhima@gmail.com</a></p>
@@ -15,34 +15,18 @@
 </template>
 
 <script>
-import axios from 'axios';
-
 export default {
-  /*
-  asyncData(contex){
-    return axios.get(process.env.baseUrl + '/posts/' + context.params.id + '.json')
-      .then(res => {
+  asyncData(context) {
+    return context.app.$axios.$get('/posts/' + context.params.id + '.json')
+      .then(data => {
         return {
-          loadedPost: res.data
+          loadedPost: data
         }
       })
-      .catch(e => context.error(e));
-    } */
-  asyncData(context, callback) {
-    setTimeout(() => {
-      callback(null, {
-        loadedPost: {
-          id: "1",
-          title: "First Post (ID: " + context.route.params.id + ")",
-          previewText: "This is our first post!",
-          author: 'Aymane',
-          updatedDate: new Date(),
-          content: 'Some dummy text which is definitely not the preview text though!',
-          thumbnail:
-            "https://static.pexels.com/photos/270348/pexels-photo-270348.jpeg"
-        }
-      });
-    }, 1000);
+      .catch(e => context.error(e))
+  },
+  head: {
+    title: 'A Blog Post'
   }
 };
 </script>

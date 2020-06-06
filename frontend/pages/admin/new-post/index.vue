@@ -11,14 +11,13 @@ import axios from 'axios';
 
 export default {
   layout: 'admin',
+  middleware: ['is-auth', 'auth'],
   methods: {
-    onSubmitted () {}
-    /* onSubmitted (postData) {
-      this.$store.dispatch("addPost", postData)
-        .then(() => {
-          this.$router.push("/admin");
-        });
-    } */
+    onSubmitted(postData) {
+      this.$store.dispatch("addPost", postData).then(() => {
+        this.$router.push("/admin");
+      });
+    }
   },
 }
 </script>
